@@ -1,3 +1,14 @@
+const topbar=document.querySelector('.topbar');
+const pageNav=topbar?.querySelector('nav');
+if(topbar&&pageNav){
+  pageNav.classList.add('page-nav');
+  const courseSwitcher=document.createElement('nav');
+  courseSwitcher.className='course-switcher';
+  courseSwitcher.setAttribute('aria-label','课程切换');
+  courseSwitcher.innerHTML='<a href="index.html" aria-current="page">AI数字人</a><a href="manju.html">AI漫剧</a>';
+  topbar.querySelector('.brand')?.after(courseSwitcher);
+}
+
 const lessons=[...document.querySelectorAll('.lesson')];
 const toggle=document.getElementById('expand');
 toggle.addEventListener('click',()=>{const open=!lessons.every(x=>x.open);lessons.forEach(x=>x.open=open);sync();});
@@ -21,6 +32,24 @@ if(mvLessonBody){
         '<h4 id="mv-feature-title">用一条音乐时间轴，锁住人物、舞台与表演连续性</h4>'+
         '<p>课堂内完成 20—30 秒可交付片段；4 分钟完整方案拆为 16 个 15 秒镜头包，作为课后进阶练习。</p>'+
         '<div class="mv-goal-grid"><span><b>人物</b>脸型、发饰、礼服不漂移</span><span><b>场景</b>宫阙、圆屏、延伸台保持一致</span><span><b>声音</b>原曲切片 1:1 复用</span><span><b>镜头</b>每段 3 个镜头随能量变化</span></div>'+
+      '</div>'+
+    '</section>'+
+    '<section class="mv-block mv-showcase" aria-labelledby="mv-showcase-title">'+
+      '<div class="mv-block-title"><span>成片</span><div><h4 id="mv-showcase-title">先看成片，再反推制作</h4><p>把角色、舞台、声音和镜头连续性放回同一条时间线中观察。</p></div></div>'+
+      '<div class="mv-video-card">'+
+        '<div class="mv-video-frame">'+
+          '<video id="mv-showcase-video" controls preload="metadata" playsinline poster="mv-stage.png" aria-label="国风数字人MV《照夜辞》示例成片">'+
+            '<source src="zhaoye-ci.mp4" type="video/mp4">'+
+            '当前浏览器不支持视频播放，可<a href="zhaoye-ci.mp4">下载《照夜辞》视频</a>查看。'+
+          '</video>'+
+          '<span class="mv-video-duration" aria-hidden="true">00:30</span>'+
+        '</div>'+
+        '<div class="mv-video-notes">'+
+          '<p class="mv-video-eyebrow">COURSE FILM · 30 SEC</p>'+
+          '<h5>《照夜辞》</h5>'+
+          '<p>这支完整样片作为课堂定标：先看最终效果，再回到人物资产、宫阙舞台、音乐切片与连续分镜逐项拆解。</p>'+
+          '<ul><li>人物：脸型、发饰与礼服保持统一</li><li>场景：宫阙、舞台与光色形成连续空间</li><li>声音：用同一条音乐时间轴组织表演与剪辑</li></ul>'+
+        '</div>'+
       '</div>'+
     '</section>'+
     '<section class="mv-block mv-class-plan">'+
@@ -53,6 +82,14 @@ if(mvLessonBody){
       '<div class="output"><h4>当堂产出</h4><p>20—30 秒国风数字人 MV 成片 + 人物/场景参考资产 + 2 段生成提示词</p></div>'+
       '<a class="mv-source" href="https://my.feishu.cn/docx/MxczdadPhoHCd5x80znc3Y8SnRm" target="_blank" rel="noreferrer">查看原始飞书课程资料</a>'+
     '</section>';
+
+  const showcaseVideo=document.getElementById('mv-showcase-video');
+  if(showcaseVideo){
+    const videoObserver=new IntersectionObserver(entries=>{
+      if(!entries[0].isIntersecting)showcaseVideo.pause();
+    },{threshold:.08});
+    videoObserver.observe(showcaseVideo);
+  }
 
   const promptList=document.getElementById('mv-prompt-list');
   fetch('mv-prompts.json')
