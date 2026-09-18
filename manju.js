@@ -28,7 +28,7 @@ const courseGroups=[
   },
   {
     name:'风格与动作',range:'12—14',lessons:[
-      {number:12,module:'风格化制作',title:'风格化热血OP制作',content:'风格化定制热血日漫风格主角战斗OP风格制作',practice:'完成一段15秒战斗OP',output:'日漫战斗OP'},
+      {number:12,module:'风格化制作',title:'风格化热血OP制作',content:'日漫OP的视听特征；东方灾后世界观与资产准备；15秒节奏分段；人物动作、摄影机运动、视觉包装与音乐卡点协同',practice:'按分段时间轴完成一段15秒单角色战斗OP，并用动作拆解公式检查连续性',output:'15秒风格化热血战斗OP'},
       {number:13,module:'动作武打戏',title:'动作、冲突与视觉高潮',content:'武打戏的起势、进攻、防守、反击和结果；将复杂打斗拆成1—2秒的动作单元；人物站位、攻击方向、视线、惯用手和武器位置的连续性；起始姿势、接触姿势和结束姿势等关键动作帧',practice:'制作一段10秒打戏',output:'打戏高潮段落'},
       {number:14,module:'后期合成',title:'剪辑、字幕、音乐与音效',content:'先声音后画面的剪辑方法；镜头长短和叙事节奏；对白、环境音、音效和音乐的层级；字幕断句；关键词强调；片头、转场和结尾设计；竖屏适配',practice:'将已有镜头组装成完整粗剪，补充字幕、音乐和基础音效',output:'AI漫剧粗剪版1.0'}
     ]
@@ -101,6 +101,96 @@ courseGroups.forEach((group,groupIndex)=>{
   });
   lessonsRoot.append(section);
 });
+
+const opLessonBody=document.querySelector('#comic-lesson-12 .lesson-body');
+if(opLessonBody){
+  const opTimeline=[
+    {time:'0.0—0.9s',title:'身份钩子',beat:'眼睛、剑柄与绑腕三组极短特写，先建立角色和武器。',camera:'连续急推，最后穿入城门广场。',pack:'冷蓝校准线、局部微波点与短促反相闪帧。',next:'轴承圆孔放大，作为进入世界观的遮罩。'},
+    {time:'0.9—2.0s',title:'高速扫描',beat:'低机位穿越桥墩和废铁梁，再甩向四周残响体。',camera:'18mm强视差前冲，快速完成空间交代。',pack:'扫描框与细电路只服务信息识别，不盖过主体。',next:'六角框闭合成螺栓头，在重拍上打开。'},
+    {time:'2.0—3.8s',title:'剑势蓄力',beat:'双手从自然垂落到握住剑柄和剑身，气流沿剑刃积聚。',camera:'正面中近景小幅绕行后稳定推进。',pack:'后层大字、斜切线与渐隐波点跟随能量增强。',next:'3.8秒能量爆发，剑气掠过镜头完成转场。'},
+    {time:'3.8—5.2s',title:'拔剑爆发',beat:'右手拔剑、身体拧腰、双手锁定，左脚踏出稳定重心。',camera:'从怪物肩部缝隙钻出，靠近角色右侧。',pack:'文字沿导轨滑入，角色与剑身形成前中后层。',next:'剑尖橙光正对镜头并吞没画面。'},
+    {time:'5.2—6.0s',title:'剪影转场',beat:'人物侧身压低重心，长剑后摆，为冲刺做准备。',camera:'摄影机高速横移，纹样从相反方向掠过。',pack:'黑橙剪影、祥云纹与龙纹形成三层遮挡。',next:'前脚踏出的冲击形状撕开下一镜。'},
+    {time:'6.0—7.3s',title:'三步爆发冲刺',beat:'三步必须有不同步态：前倾拖剑、跨梁换腿、蹬伸扬剑。',camera:'贴地倒退追拍，再下沉并甩至侧后方仰拍。',pack:'仅保留三条渐隐速度线与局部尾迹。',next:'断裂高架扫过前景，自然接入起跳。'},
+    {time:'7.3—8.5s',title:'高跳与剑势启动',beat:'压缩、蹬直、腾空、收膝、扭腰与甩剑连续发生。',camera:'从起跳点正下方垂直仰望，并沿上升轨迹绕行。',pack:'半圆转速表切线与剑身气流同步增强。',next:'摄影机钻入剑气核心，在8.5秒冲出。'},
+    {time:'8.5—10.7s',title:'空中机动斩击',beat:'横扫、借反震转体、第二次斜斩与最终扫击构成高潮。',camera:'主观视角、贴剑跟随与极端低角度连续切换。',pack:'刻度、压力表、切线和少量微波点围绕动作中心。',next:'10.2秒橙黑冲击帧后迅速抽空，为落地留空间。'},
+    {time:'10.7—11.8s',title:'高速坠落与落地',beat:'左脚接触、膝盖压缩、右脚滑步、身体旋转、左手触地。',camera:'从残骸内部仰拍，随角色急坠后甩到贴地侧前方。',pack:'环形烟尘、地面刻线、火星与碎石体现冲击。',next:'残骸贴近镜头形成黑色遮挡。'},
+    {time:'11.8—12.5s',title:'动态收束',beat:'左手撑地起身，髋部抬起，长剑回到右侧斜下方。',camera:'低位绕到三分之二正面后快速减速。',pack:'气流转静止，橙光变弱，细线从末端分段收回。',next:'速度归零，进入稳定英雄构图。'},
+    {time:'12.5—15.0s',title:'OP定版',beat:'人物右侧站定，剑尖斜向前下方，目光直视镜头。',camera:'构图稳定，只保留3%以内慢推与细微衣发运动。',pack:'标题、祥云、龙纹、链条和建筑剪影分层锁定。',next:'15.0秒硬切黑场，完成记忆点。'}
+  ];
+  const opTimelineMarkup=opTimeline.map((item,index)=>
+    `<details class="op-shot"${index===0?' open':''}><summary><span class="op-time">${item.time}</span><strong>${item.title}</strong><span class="op-shot-plus" aria-hidden="true"></span></summary><div class="op-shot-grid"><p><b>人物动作</b>${item.beat}</p><p><b>摄影机</b>${item.camera}</p><p><b>视觉包装</b>${item.pack}</p><p><b>转场连接</b>${item.next}</p></div></details>`
+  ).join('');
+
+  opLessonBody.classList.add('op-lesson-body');
+  opLessonBody.innerHTML=`
+    <section class="op-feature" aria-labelledby="op-feature-title">
+      <img src="op-frame-03.jpg" alt="黑衣持巨剑角色站在东方灾后巨城前的热血OP定版画面">
+      <div class="op-feature-shade"></div>
+      <div class="op-feature-copy">
+        <p class="op-kicker">LESSON 12 · 15 SECOND MINI OP</p>
+        <h4 id="op-feature-title">风格化热血<br>Mini OP 制作</h4>
+        <p>从日漫OP的视听语法出发，把世界观、角色资产、动作表演、摄影机和音乐卡点压缩进一条15秒时间轴。</p>
+        <div class="op-specs"><span><b>15s</b>时长</span><span><b>16:9</b>画幅</span><span><b>24fps</b>帧率</span><span><b>1人</b>主角</span></div>
+      </div>
+    </section>
+
+    <section class="op-block" aria-labelledby="op-film-title">
+      <div class="op-block-title"><span>成片</span><div><h4 id="op-film-title">先看完整样片，再沿时间轴倒推</h4><p>观察角色如何从身份钩子进入蓄力、冲刺、空中斩击与定版收束。</p></div></div>
+      <div class="op-video-card">
+        <div class="op-video-frame"><video id="op-showcase-video" controls preload="metadata" playsinline poster="op-frame-03.jpg" aria-label="15秒风格化热血Mini OP示例成片"><source src="mini-op-demo.mp4" type="video/mp4">当前浏览器不支持视频播放，可<a href="mini-op-demo.mp4">下载示例视频</a>查看。</video><span>00:15</span></div>
+        <div class="op-video-notes"><p class="op-label">CASE FILM · 24 FPS</p><h5>天裂之后</h5><p>不是逐帧模仿，而是识别每一段承担的叙事任务：先让观众记住人，再让动作逐级升级，最后用稳定定版收住高潮。</p><ul><li>场景：东方灾后巨城保持统一</li><li>动作：身体、武器与运镜同时变化</li><li>节奏：强弱交替，不连续铺满特效</li></ul></div>
+      </div>
+    </section>
+
+    <section class="op-block" aria-labelledby="op-class-title">
+      <div class="op-block-title"><span>45 MIN</span><div><h4 id="op-class-title">课堂推进表</h4><p>一节课完成认知、拆解、设计和落地检查。</p></div></div>
+      <ol class="op-class-flow"><li><b>0—6′</b><span>看片定标，理解OP与PV、ED、IN的区别</span></li><li><b>6—14′</b><span>建立世界观，明确角色、场景与敌人资产</span></li><li><b>14—22′</b><span>拆开提示词七大模块，识别固定项与镜头变量</span></li><li><b>22—34′</b><span>按15秒时间轴逐段设计人物、运镜、包装与转场</span></li><li><b>34—42′</b><span>用动作公式重写一个空中斩击镜头</span></li><li><b>42—45′</b><span>按连续性清单检查并提交方案</span></li></ol>
+    </section>
+
+    <section class="op-block" aria-labelledby="op-grammar-title">
+      <div class="op-block-title"><span>01</span><div><h4 id="op-grammar-title">先认识日漫OP的画面语法</h4><p>OP是每集开头的主题动画短片，用歌曲、角色、世界观和伏笔快速抓住观众。</p></div></div>
+      <div class="op-term-strip"><span><b>OP</b>片头曲 / 开场曲</span><span><b>ED</b>片尾曲</span><span><b>IN</b>剧情插入曲</span><span><b>OVA</b>番外录影动画</span><span><b>PV</b>播出前宣传短片</span></div>
+      <div class="op-traits"><article><b>01</b><h5>快切与卡点</h5><p>短镜头密集，主重拍明确切镜，连续动作穿过次级节拍。</p></article><article><b>02</b><h5>预告与伏笔</h5><p>展示角色、阵营和危机，但不把完整故事一次讲完。</p></article><article><b>03</b><h5>经典镜头组合</h5><p>人物特写、大远景、奔跑打斗与定格名场面交替出现。</p></article><article><b>04</b><h5>意象与符号</h5><p>花瓣、碎片、鸟、水、光影等画面暗示人物命运与矛盾。</p></article><article><b>05</b><h5>色彩与光影</h5><p>冷暖、明暗与饱和度随歌曲情绪改变，形成段落差异。</p></article><article><b>06</b><h5>多样转场</h5><p>闪白、模糊、撕裂、光斑和前景遮挡承担镜头连接。</p></article><article><b>07</b><h5>跟随歌曲结构</h5><p>主歌铺世界观，副歌提高动作密度并释放视觉高潮。</p></article></div>
+    </section>
+
+    <section class="op-block" aria-labelledby="op-world-title">
+      <div class="op-block-title"><span>02</span><div><h4 id="op-world-title">世界观与资产准备</h4><p>先让角色、城市和敌人属于同一个世界，再追求动作效果。</p></div></div>
+      <div class="op-world-lead"><div><p class="op-label">WORLD BUILDING</p><h5>天裂之后的东方巨城</h5><p>近未来，空间异常“天裂”释放“墟质”，把人类记忆、古代器物与现代城市设施重新拼合。东方巨城在古代城址上建造“镇界枢纽”，由“巡界司”进入封锁区清除墟质生命并关闭裂隙。</p></div><ul><li>古城墙成为能源防线</li><li>天文仪器升级为空间观测阵列</li><li>寺庙、牌楼与高架轨道彼此嵌合</li><li>符箓般线路承担城市能源回路</li><li>整体是冷峻、克制的东方灾后都市</li></ul></div>
+      <div class="op-gallery"><figure><img src="op-frame-01.jpg" alt="古城门、高架环线和残响体构成的东方灾后巨城场景"><figcaption><b>场景基准</b><span>城门中轴 · 环形高架 · 暗云山脉</span></figcaption></figure><figure><img src="op-frame-02.jpg" alt="角色持紫色剑气冲向墟质怪物的动作画面"><figcaption><b>动作基准</b><span>强透视 · 三步冲刺 · 剑气轨迹</span></figcaption></figure><figure><img src="op-frame-03.jpg" alt="黑衣主角与超大型宽刃长剑的定版构图"><figcaption><b>角色定版</b><span>同一张脸 · 同一服装 · 同一武器</span></figcaption></figure></div>
+      <div class="op-asset-check"><span><b>角色资产</b>正面 / 侧面 / 背面 / 全身战斗姿态</span><span><b>场景资产</b>城门广场 / 高空城市 / 中轴仰视</span><span><b>敌人资产</b>统一结构、尺度与核心发光位置</span><span><b>验收原则</b>脸、服装、武器、空间关系先锁定</span></div>
+    </section>
+
+    <section class="op-block" aria-labelledby="op-prompt-title">
+      <div class="op-block-title"><span>03</span><div><h4 id="op-prompt-title">完整提示词的七大模块</h4><p>用固定信息保证统一，用分段信息控制节奏。</p></div></div>
+      <div class="op-prompt-map"><span><i>01</i><b>核心定位</b><small>时长、画幅、规格、作品类型</small></span><span><i>02</i><b>角色与武器</b><small>脸、服装、手部、武器形态</small></span><span><i>03</i><b>人物与场景参考</b><small>参考图角色、城门与敌人资产</small></span><span><i>04</i><b>整体视听风格</b><small>赛璐璐、强透视、色彩和运镜</small></span><span><i>05</i><b>15秒逐段分镜</b><small>动作、摄影机、包装和接镜</small></span><span><i>06</i><b>音乐与卡点</b><small>BPM、主重拍、高潮与抽空</small></span><span><i>07</i><b>避免项</b><small>一致性、动作连续性和画面禁区</small></span></div>
+      <blockquote class="op-question"><b>每一段都回答四个问题</b><span>人物做了什么？</span><span>摄影机怎么运动？</span><span>画面包装出现了什么？</span><span>这一段怎样进入下一段？</span></blockquote>
+    </section>
+
+    <section class="op-block" aria-labelledby="op-timeline-title">
+      <div class="op-block-title"><span>04</span><div><h4 id="op-timeline-title">15秒逐段分镜</h4><p>点击每一段右侧加号，查看动作、摄影机、包装和转场的协同关系。</p></div></div>
+      <div class="op-timeline">${opTimelineMarkup}</div>
+    </section>
+
+    <section class="op-block op-action" aria-labelledby="op-action-title">
+      <div class="op-block-title"><span>05</span><div><h4 id="op-action-title">动作戏统一拆解公式</h4><p>不要只写“角色挥剑”，要写出身体如何完成这次挥剑。</p></div></div>
+      <div class="op-formula" aria-label="动作戏拆解公式"><span>起始姿势</span><i>→</i><span>发力部位</span><i>→</i><span>身体重心</span><i>→</i><span>武器轨迹</span><i>→</i><span>服装与环境响应</span><i>→</i><span>结束姿势</span></div>
+      <div class="op-example"><p class="op-label">EXAMPLE · 空中斩击</p><p>空中收膝准备旋转 → 腰部先扭转、右肩随后发力 → 双腿由收膝变为前后展开 → 长剑从右上向左下横扫 → 剑气、衣摆、发丝与怪物结构同时响应 → 借反震继续转体，连接下一次斜斩。</p></div>
+    </section>
+
+    <section class="op-delivery">
+      <div><h4>课堂实操</h4><p>以自己的角色和世界观为基础，完成一份15秒OP时间轴；任选一个动作镜头，使用六步公式写清身体、武器、环境与摄影机的连续变化。</p></div>
+      <div class="output"><h4>当堂产出</h4><p>15秒风格化热血战斗OP + 世界观/资产清单 + 逐段分镜表</p></div>
+      <a href="https://my.feishu.cn/wiki/CXMWw4mL8ig6OqkUVjWc689Snvb" target="_blank" rel="noreferrer">查看原始飞书课程资料</a>
+    </section>`;
+
+  const opVideo=document.getElementById('op-showcase-video');
+  if(opVideo){
+    const opVideoObserver=new IntersectionObserver(entries=>{
+      if(!entries[0].isIntersecting)opVideo.pause();
+    },{threshold:.08});
+    opVideoObserver.observe(opVideo);
+  }
+}
 
 const lessons=[...document.querySelectorAll('.lesson')];
 const expandButton=document.getElementById('expand');
