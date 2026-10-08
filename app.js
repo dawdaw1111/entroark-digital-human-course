@@ -5,7 +5,7 @@ if(topbar&&pageNav){
   const courseSwitcher=document.createElement('nav');
   courseSwitcher.className='course-switcher';
   courseSwitcher.setAttribute('aria-label','课程切换');
-  courseSwitcher.innerHTML='<a href="index.html" aria-current="page">AI数字人</a><a href="manju.html">AI漫剧</a>';
+  courseSwitcher.innerHTML='<a href="index.html" aria-current="page">AI数字人</a><a href="manju.html">AI漫剧</a><a href="bianxian.html">AI变现课</a>';
   topbar.querySelector('.brand')?.after(courseSwitcher);
 }
 

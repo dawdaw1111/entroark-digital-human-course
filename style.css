@@ -446,3 +446,15 @@ footer img{width:110px}
 .op-shot-grid{display:grid}
 .op-video-card{break-inside:avoid}
 }
+
+/* AI变现课：复用课程手册的配色、字号与目录结构 */
+.monetization-facts{grid-template-columns:1fr 3fr}
+.outline-status{color:var(--muted);font-size:14px}
+.title-lesson{display:flex;align-items:center;gap:20px;padding:25px 8px;scroll-margin-top:24px}
+.title-lesson h3{margin:0;font-size:18px;line-height:1.6;font-weight:600;overflow-wrap:anywhere}
+.monetize-page aside nav a{font-size:13px;gap:10px}
+.topbar .course-switcher a{min-height:36px;display:flex;align-items:center}
+@media(max-width:1100px){.topbar{gap:22px}.top-note{display:none}}
+@media(max-width:640px){.topbar{height:auto;min-height:72px;flex-wrap:wrap;padding:16px 20px;gap:12px}.topbar .brand img{width:130px}.topbar .course-switcher{margin-left:0;max-width:100%}.topbar .course-switcher a{min-height:44px}.monetization-facts{grid-template-columns:1fr 2fr}.monetization-facts .fact-text{grid-column:auto;padding-left:20px;border-left:1px solid var(--line);margin:0}.monetization-facts .fact-text b{font-size:16px}.outline-status{font-size:12px}.title-lesson{gap:12px;padding:21px 0}.title-lesson h3{font-size:16px}}
+
+@media(max-width:640px){.monetize-page .section-title{display:block}.monetize-page .outline-status{display:block;margin-top:10px}.monetize-page .section-title h2{font-size:24px;text-wrap:balance}}
