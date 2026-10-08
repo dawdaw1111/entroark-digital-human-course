@@ -104,6 +104,17 @@ courseGroups.forEach((group,groupIndex)=>{
     output.append(outputTitle,outputText);
     practice.append(practiceTitle,practiceText,output);
     body.append(content,practice);
+    if(item.number===1){
+      const resources=document.createElement('div');
+      resources.className='lesson-resources';
+      const download=document.createElement('a');
+      download.className='primary';
+      download.href='downloads/ai-manju-lesson-01.pptx';
+      download.download='1.AI漫剧是怎么创作出来的.pptx';
+      download.textContent='下载本课PPT（约20 MB）';
+      resources.append(download);
+      body.append(resources);
+    }
     details.append(summary,body);
     section.append(details);
   });
