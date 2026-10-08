@@ -460,3 +460,5 @@ footer img{width:110px}
 @media(max-width:640px){.monetize-page .section-title{display:block}.monetize-page .outline-status{display:block;margin-top:10px}.monetize-page .section-title h2{font-size:24px;text-wrap:balance}}
 
 .lesson-resources{grid-column:1 / -1;padding-top:16px;border-top:1px solid var(--line)}
+
+.course-group>.lesson-resources{padding:16px 20px;margin-bottom:16px;background:var(--pale);border:1px solid var(--line);border-radius:6px}.lesson-resources .primary{white-space:normal;overflow-wrap:anywhere;line-height:1.6}
